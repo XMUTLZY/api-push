@@ -40,4 +40,13 @@ public class DirectRabbitConfig {
     public Binding bindingDirect() {
         return BindingBuilder.bind(directQueue()).to(directExchange()).with(RabbitConstants.DIRECT_ROUTING_KEY);
     }
+
+    /**
+     * 不给交换机绑定队列，用于测试消息丢失
+     * @return
+     */
+    @Bean
+    public DirectExchange testDirectExchange() {
+        return new DirectExchange(RabbitConstants.TEST_DIRECT_EXCHANGE, true, false);
+    }
 }

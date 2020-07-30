@@ -8,6 +8,7 @@ public class RabbitConstants {
     public static final String DIRECT_ROUTING_KEY = "directRouting";
     public static final String DIRECT_QUEUE = "directQueue";
     public static final String DIRECT_EXCHANGE = "directExchange";
+    public static final String TEST_DIRECT_EXCHANGE = "testDirectExchange";
 
     public static final String FANOUT_QUEUE_A = "fanoutQueueA";
     public static final String FANOUT_QUEUE_B = "fanoutQueueB";
