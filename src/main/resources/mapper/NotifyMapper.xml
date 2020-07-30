@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="personal.jake.apipush.repository.NotifyMapper">
+    <insert id="add" parameterType="personal.jake.apipush.http.request.MessageRequest">
+        insert into notify(mobile,message,create_time) values(#{mobile}, #{message}, #{createTime})
+    </insert>
+
+</mapper>
