@@ -8,12 +8,12 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * 消息确认机制
+ * 消息确认机制 生产者
  * @author jake.lin
  * @date 2020/07/30
  */
 @Configuration
-public class RabbitMessageConfirmConfig {
+public class ProducerMessageConfirmConfig {
     @Bean
     public RabbitTemplate createRabbitTemplate(ConnectionFactory connectionFactory) {
         RabbitTemplate rabbitTemplate = new RabbitTemplate();
