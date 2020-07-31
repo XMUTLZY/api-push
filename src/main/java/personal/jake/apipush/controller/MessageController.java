@@ -3,6 +3,7 @@ package personal.jake.apipush.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import personal.jake.apipush.http.request.MessageRequest;
@@ -23,5 +24,16 @@ public class MessageController {
     @PostMapping("/message")
     public ResponseEntity<String> message(@RequestBody MessageRequest request) {
         return messageService.message(request);
+    }
+
+    /**
+     * @Async注解的实际应用
+     */
+    @GetMapping("/test")
+    public void test() throws InterruptedException {
+        System.out.println("线程开始执行。。。。。。。。。。");
+        messageService.doTaskA();
+        messageService.doTaskB();
+        System.out.println("线程结束。。。。。。。。。。");
     }
 }
