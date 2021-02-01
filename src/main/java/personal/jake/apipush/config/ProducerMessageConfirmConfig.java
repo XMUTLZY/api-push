@@ -18,25 +18,25 @@ public class ProducerMessageConfirmConfig {
     public RabbitTemplate createRabbitTemplate(ConnectionFactory connectionFactory) {
         RabbitTemplate rabbitTemplate = new RabbitTemplate();
         rabbitTemplate.setConnectionFactory(connectionFactory);
-        // 强制开启mandatory，才能回调函数，无论推送消息结果如何都强制回调
-        rabbitTemplate.setMandatory(true);
         rabbitTemplate.setConfirmCallback(new RabbitTemplate.ConfirmCallback() {
             @Override
             public void confirm(CorrelationData correlationData, boolean b, String s) {
-                System.out.println("ConfirmCallback:     "+"相关数据："+correlationData);
-                System.out.println("ConfirmCallback:     "+"确认情况："+ b);
-                System.out.println("ConfirmCallback:     "+"原因：" + s);
+                if (b) {
+                    System.out.println("message success");
+                } else {
+                    System.out.println("message failed");
+                }
             }
         });
 
         rabbitTemplate.setReturnCallback(new RabbitTemplate.ReturnCallback() {
             @Override
             public void returnedMessage(Message message, int i, String s, String s1, String s2) {
-                System.out.println("ReturnCallback:     "+"消息：" + message);
-                System.out.println("ReturnCallback:     "+"回应码：" + i);
-                System.out.println("ReturnCallback:     "+"回应信息：" + s);
-                System.out.println("ReturnCallback:     "+"交换机：" + s1);
-                System.out.println("ReturnCallback:     "+"路由键：" + s2);
+                System.out.println("消息主体 message : " + message);
+                System.out.println("消息主体 replyCode : " + i);
+                System.out.println("描述 replyText：" + s);
+                System.out.println("消息使用的交换器 exchange : " + s1);
+                System.out.println("消息使用的路由键 routing : " + s2);
             }
         });
 
